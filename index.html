@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Undangan Pernikahan Digital - Master Edition</title>
+    <title>Undangan Pernikahan Digital - Final Edition</title>
     
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -15,7 +15,7 @@
             --primary: #8e735b;
             --accent: #bc9c7e;
             --text-dark: #2c241e;
-            --glass: rgba(255, 255, 255, 0.85);
+            --glass: rgba(255, 255, 255, 0.88);
         }
 
         body { font-family: 'Montserrat', sans-serif; color: var(--text-dark); background: #f4eee8; margin: 0; overflow-x: hidden; }
@@ -25,7 +25,7 @@
         .section-full { 
             position: relative; min-height: 100vh; display: flex; align-items: center; justify-content: center;
             background-size: cover; background-position: center; background-attachment: fixed;
-            padding: 80px 20px; overflow: hidden;
+            padding: 100px 20px; overflow: hidden;
         }
 
         #cover {
@@ -34,39 +34,39 @@
         }
         #cover::before { content: ""; position: absolute; inset: 0; background: rgba(0,0,0,0.5); }
         #cover.hide { transform: translateY(-100%); pointer-events: none; }
-        .cover-content { position: relative; z-index: 2; text-align: center; color: white; width: 90%; max-width: 500px; }
 
         .arch-frame { 
-            border-radius: 250px 250px 30px 30px; overflow: hidden; 
-            border: 8px solid white; box-shadow: 0 25px 50px rgba(0,0,0,0.2); 
-            width: 100%; max-width: 380px; margin: 0 auto; height: 550px; 
+            border-radius: 280px 280px 40px 40px; overflow: hidden; 
+            border: 10px solid white; box-shadow: 0 30px 60px rgba(0,0,0,0.15); 
+            width: 100%; max-width: 400px; margin: 0 auto; height: 580px; 
             transition: 0.6s transform;
         }
         .arch-frame img { width: 100%; height: 100%; object-fit: cover; }
 
         .btn-gold { 
-            background: var(--primary); color: white; padding: 14px 35px; border-radius: 50px; 
+            background: var(--primary); color: white; padding: 16px 40px; border-radius: 50px; 
             font-weight: 600; cursor: pointer; transition: 0.3s; display: inline-block; 
-            box-shadow: 0 4px 15px rgba(142, 115, 91, 0.3); border: none;
+            box-shadow: 0 4px 20px rgba(142, 115, 91, 0.4); border: none; text-align: center;
         }
         .btn-gold:hover { transform: scale(1.05); background: var(--accent); }
 
         .bottom-nav {
             position: fixed; bottom: 20px; left: 50%; transform: translateX(-50%);
-            background: var(--glass); backdrop-filter: blur(10px);
-            display: flex; gap: 20px; padding: 12px 25px; border-radius: 50px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.1); z-index: 1000; border: 1px solid var(--accent);
+            background: var(--glass); backdrop-filter: blur(15px);
+            display: flex; gap: 20px; padding: 14px 28px; border-radius: 50px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15); z-index: 1000; border: 1px solid var(--accent);
         }
+        
         #music-btn {
             position: fixed; top: 20px; right: 20px; z-index: 10001;
-            background: var(--glass); width: 45px; height: 45px;
+            background: var(--glass); width: 50px; height: 50px;
             border-radius: 50%; display: flex; align-items: center; justify-content: center;
-            cursor: pointer; box-shadow: 0 4px 10px rgba(0,0,0,0.1); color: var(--primary);
+            cursor: pointer; box-shadow: 0 4px 15px rgba(0,0,0,0.1); color: var(--primary);
         }
         .spinning { animation: spin 4s linear infinite; }
         @keyframes spin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
         
-        .glass-card { background: var(--glass); backdrop-filter: blur(10px); border-radius: 30px; border: 1px solid white; padding: 30px; }
+        .glass-card { background: var(--glass); backdrop-filter: blur(10px); border-radius: 35px; border: 1px solid white; padding: 40px; width: 100%; }
     </style>
 </head>
 <body>
@@ -76,16 +76,16 @@
     </audio>
 
     <div id="music-btn" class="hidden" onclick="toggleMusic()">
-        <i class="fas fa-compact-disc text-xl"></i>
+        <i class="fas fa-compact-disc text-2xl"></i>
     </div>
 
     <div id="cover">
-        <div class="cover-content">
-            <h2 class="uppercase tracking-[0.4em] text-sm mb-6">The Wedding of</h2>
-            <h1 class="text-5xl font-serif mb-12" id="c-display-names">Loading...</h1>
+        <div class="relative z-10 text-center text-white px-6">
+            <h2 class="uppercase tracking-[0.5em] text-sm mb-8">The Wedding of</h2>
+            <h1 class="text-6xl font-serif mb-16" id="c-display-names">Loading...</h1>
             <div class="mb-12">
-                <p class="text-xs uppercase mb-2 opacity-80">Kepada Bapak/Ibu/Saudara/i:</p>
-                <h2 class="text-3xl font-serif italic" id="guest-name">Tamu Undangan</h2>
+                <p class="text-xs uppercase mb-3 opacity-80">Kepada Bapak/Ibu/Saudara/i:</p>
+                <h2 class="text-4xl font-serif italic" id="guest-name">Tamu Undangan</h2>
             </div>
             <button onclick="startApp()" class="btn-gold">Buka Undangan</button>
         </div>
@@ -93,57 +93,67 @@
 
     <section id="intro" class="section-full">
         <div class="absolute inset-0 bg-white/40 z-[1]"></div>
-        <div class="relative z-[2] text-center max-w-2xl px-4">
-            <h2 class="font-script text-6xl mb-8 text-[#8e735b]">Assalamu'alaikum</h2>
-            <div class="mb-10">
-                <img id="intro-photo" src="" class="w-full h-[450px] object-cover rounded-[60px] shadow-2xl border-[10px] border-white">
+        <div class="relative z-[2] text-center max-w-3xl px-4">
+            <h2 class="font-script text-7xl mb-10 text-[#8e735b]">Assalamu'alaikum</h2>
+            <div class="mb-12">
+                <img id="intro-photo" src="" class="w-full h-[500px] object-cover rounded-[70px] shadow-2xl border-[12px] border-white">
             </div>
-            <p class="italic text-gray-600 text-sm leading-relaxed" id="intro-quote"></p>
+            <p class="italic text-gray-700 text-lg leading-relaxed px-6" id="intro-quote"></p>
         </div>
     </section>
 
     <section id="groom-sec" class="section-full">
         <div class="absolute inset-0 bg-white/30 z-[1]"></div>
         <div class="relative z-[2] text-center w-full">
-            <div class="arch-frame mb-8"><img id="groom-photo" src="" alt="Groom"></div>
-            <h3 class="text-4xl font-bold text-[#8e735b]" id="groom-name"></h3>
-            <p class="text-md mt-4 text-gray-500 font-medium" id="groom-parents"></p>
+            <div class="arch-frame mb-10"><img id="groom-photo" src="" alt="Groom"></div>
+            <h3 class="text-5xl font-bold text-[#8e735b]" id="groom-name"></h3>
+            <p class="text-xl mt-6 text-gray-500 font-medium" id="groom-parents"></p>
         </div>
     </section>
 
     <section id="bride-sec" class="section-full">
         <div class="absolute inset-0 bg-white/30 z-[1]"></div>
         <div class="relative z-[2] text-center w-full">
-            <div class="arch-frame mb-8"><img id="bride-photo" src="" alt="Bride"></div>
-            <h3 class="text-4xl font-bold text-[#8e735b]" id="bride-name"></h3>
-            <p class="text-md mt-4 text-gray-500 font-medium" id="bride-parents"></p>
+            <div class="arch-frame mb-10"><img id="bride-photo" src="" alt="Bride"></div>
+            <h3 class="text-5xl font-bold text-[#8e735b]" id="bride-name"></h3>
+            <p class="text-xl mt-6 text-gray-500 font-medium" id="bride-parents"></p>
         </div>
     </section>
 
     <section id="event" class="section-full">
         <div class="absolute inset-0 bg-white/60 z-[1]"></div>
-        <div class="relative z-[2] text-center w-full max-w-lg">
-            <h2 class="font-script text-7xl mb-10 text-[#8e735b]">Acara</h2>
+        <div class="relative z-[2] text-center w-full max-w-xl">
+            <h2 class="font-script text-8xl mb-12 text-[#8e735b]">Acara</h2>
             
-            <div id="countdown" class="flex justify-center gap-4 mb-10">
-                <div class="bg-[#8e735b] text-white p-3 rounded-xl min-w-[65px]"><span id="days" class="block text-2xl font-bold">0</span><small>Hari</small></div>
-                <div class="bg-[#8e735b] text-white p-3 rounded-xl min-w-[65px]"><span id="hours" class="block text-2xl font-bold">0</span><small>Jam</small></div>
-                <div class="bg-[#8e735b] text-white p-3 rounded-xl min-w-[65px]"><span id="mins" class="block text-2xl font-bold">0</span><small>Menit</small></div>
+            <div id="countdown" class="flex justify-center gap-5 mb-12">
+                <div class="bg-[#8e735b] text-white p-5 rounded-2xl min-w-[85px] shadow-lg">
+                    <span id="days" class="block text-3xl font-bold">0</span><small class="uppercase text-[10px] tracking-widest">Hari</small>
+                </div>
+                <div class="bg-[#8e735b] text-white p-5 rounded-2xl min-w-[85px] shadow-lg">
+                    <span id="hours" class="block text-3xl font-bold">0</span><small class="uppercase text-[10px] tracking-widest">Jam</small>
+                </div>
+                <div class="bg-[#8e735b] text-white p-5 rounded-2xl min-w-[85px] shadow-lg">
+                    <span id="mins" class="block text-3xl font-bold">0</span><small class="uppercase text-[10px] tracking-widest">Menit</small>
+                </div>
+                <div class="bg-[#8e735b] text-white p-5 rounded-2xl min-w-[85px] shadow-lg">
+                    <span id="secs" class="block text-3xl font-bold">0</span><small class="uppercase text-[10px] tracking-widest">Detik</small>
+                </div>
             </div>
 
-            <div class="glass-card space-y-8 shadow-xl">
+            <div class="glass-card space-y-10 shadow-2xl">
                 <div>
-                    <h3 class="font-bold text-2xl mb-2 text-[#8e735b]">Akad Nikah</h3>
-                    <p id="akad-date" class="font-medium"></p>
+                    <h3 class="font-bold text-3xl mb-3 text-[#8e735b]">Akad Nikah</h3>
+                    <p id="akad-date" class="text-lg font-medium"></p>
                     <p id="akad-time" class="text-gray-500"></p>
                 </div>
-                <hr class="border-gray-200">
-                <div>
-                    <h3 class="font-bold text-2xl mb-2 text-[#8e735b]">Resepsi</h3>
-                    <p id="resep-date" class="font-medium"></p>
+                <div class="border-t border-gray-100 pt-10">
+                    <h3 class="font-bold text-3xl mb-3 text-[#8e735b]">Resepsi</h3>
+                    <p id="resep-date" class="text-lg font-medium"></p>
                     <p id="resep-time" class="text-gray-500"></p>
                 </div>
-                <p id="event-location" class="font-bold text-[#8e735b] pt-4"></p>
+                <div class="bg-[#fdf9f5] p-6 rounded-2xl">
+                    <p id="event-location" class="font-bold text-[#8e735b] text-lg"></p>
+                </div>
                 <button onclick="window.open(CONFIG.event.map)" class="btn-gold w-full">Buka Google Maps</button>
             </div>
         </div>
@@ -151,25 +161,25 @@
 
     <section id="gallery" class="section-full">
         <div class="absolute inset-0 bg-white/50 z-[1]"></div>
-        <div class="relative z-[2] w-full max-w-4xl px-4">
-            <h2 class="font-script text-7xl text-center mb-10 text-[#8e735b]">Galeri</h2>
-            <div class="grid grid-cols-2 md:grid-cols-3 gap-3" id="gallery-container"></div>
+        <div class="relative z-[2] w-full max-w-5xl px-4">
+            <h2 class="font-script text-8xl text-center mb-16 text-[#8e735b]">Galeri</h2>
+            <div class="grid grid-cols-2 md:grid-cols-3 gap-4" id="gallery-container"></div>
         </div>
     </section>
 
     <section id="gift" class="section-full">
         <div class="absolute inset-0 bg-white/60 z-[1]"></div>
-        <div class="relative z-[2] text-center w-full max-w-md">
-            <h2 class="font-script text-7xl mb-10 text-[#8e735b]">Wedding Gift</h2>
-            <div class="glass-card shadow-lg">
-                <div class="bg-white/50 p-6 rounded-2xl mb-6 border border-dashed border-[#8e735b]">
-                    <p class="font-bold text-lg" id="bank-name"></p>
-                    <p class="text-2xl font-mono tracking-tighter my-2 text-[#8e735b]" id="bank-acc"></p>
-                    <p class="text-xs font-bold text-gray-400 uppercase" id="bank-owner"></p>
+        <div class="relative z-[2] text-center w-full max-w-lg">
+            <h2 class="font-script text-8xl mb-12 text-[#8e735b]">Wedding Gift</h2>
+            <div class="glass-card shadow-2xl">
+                <div class="bg-white/60 p-8 rounded-3xl mb-8 border-2 border-dashed border-[#8e735b]">
+                    <p class="font-bold text-2xl" id="bank-name"></p>
+                    <p class="text-3xl font-mono tracking-tighter my-4 text-[#8e735b]" id="bank-acc"></p>
+                    <p class="text-sm font-bold text-gray-400 uppercase tracking-widest" id="bank-owner"></p>
                 </div>
-                <div class="grid grid-cols-2 gap-4">
-                    <button onclick="copyAccount()" class="btn-gold text-xs">Salin Rekening</button>
-                    <button onclick="confirmGift()" class="btn-gold text-xs bg-green-600">Konfirmasi WA</button>
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <button onclick="copyAccount()" class="btn-gold !bg-gray-700">Salin Rekening</button>
+                    <button onclick="confirmGift()" class="btn-gold !bg-green-600">Konfirmasi WA</button>
                 </div>
             </div>
         </div>
@@ -177,17 +187,27 @@
 
     <section id="rsvp" class="section-full">
         <div class="absolute inset-0 bg-white/40 z-[1]"></div>
-        <div class="relative z-[2] w-full max-w-lg">
-            <h2 class="font-script text-7xl text-center mb-10 text-[#8e735b]">Konfirmasi Kehadiran</h2>
-            <div class="glass-card shadow-xl">
-                <form onsubmit="event.preventDefault(); sendRSVP();" class="space-y-4 text-left">
-                    <input type="text" id="rsvp-name" placeholder="Nama Anda" required class="w-full p-3 rounded-xl border-none ring-1 ring-gray-200">
-                    <select id="rsvp-status" class="w-full p-3 rounded-xl border-none ring-1 ring-gray-200">
-                        <option value="Hadir">Saya Akan Hadir</option>
-                        <option value="Tidak Hadir">Maaf, Tidak Bisa Hadir</option>
-                    </select>
-                    <textarea id="rsvp-msg" placeholder="Ucapan Doa..." rows="3" required class="w-full p-3 rounded-xl border-none ring-1 ring-gray-200"></textarea>
-                    <button type="submit" class="btn-gold w-full">Kirim Ucapan & Konfirmasi</button>
+        <div class="relative z-[2] w-full max-w-xl">
+            <h2 class="font-script text-8xl text-center mb-12 text-[#8e735b]">Ucapan & Doa</h2>
+            <div class="glass-card shadow-2xl">
+                <form id="rsvp-form" onsubmit="event.preventDefault(); submitRSVP();" class="space-y-6 text-left">
+                    <div>
+                        <label class="block text-xs font-bold uppercase text-gray-400 mb-2">Nama Lengkap</label>
+                        <input type="text" id="rsvp-name" placeholder="Contoh: Budi Sudirman" required class="w-full p-4 rounded-2xl bg-white border-none ring-1 ring-gray-100 focus:ring-2 focus:ring-[#8e735b] transition-all">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-bold uppercase text-gray-400 mb-2">Konfirmasi Kehadiran</label>
+                        <select id="rsvp-status" class="w-full p-4 rounded-2xl bg-white border-none ring-1 ring-gray-100 focus:ring-2 focus:ring-[#8e735b] transition-all">
+                            <option value="Hadir">Insya Allah Hadir</option>
+                            <option value="Masih Ragu">Masih Ragu</option>
+                            <option value="Tidak Hadir">Maaf, Tidak Bisa Hadir</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label class="block text-xs font-bold uppercase text-gray-400 mb-2">Pesan & Doa Restu</label>
+                        <textarea id="rsvp-msg" placeholder="Tuliskan doa terbaik untuk kami..." rows="4" required class="w-full p-4 rounded-2xl bg-white border-none ring-1 ring-gray-100 focus:ring-2 focus:ring-[#8e735b] transition-all"></textarea>
+                    </div>
+                    <button type="submit" class="btn-gold w-full text-lg py-5 shadow-2xl">Kirim Ucapan</button>
                 </form>
             </div>
         </div>
@@ -195,37 +215,47 @@
 
     <section id="closing" class="section-full !p-0">
         <div class="absolute inset-0 bg-black/60 z-[1]"></div>
-        <div class="relative z-[2] text-center text-white p-10">
-            <h2 class="font-script text-7xl mb-6">Terima Kasih</h2>
-            <p class="text-sm opacity-80 leading-relaxed mb-10">Atas doa restu Bapak/Ibu/Saudara/i sekalian.</p>
-            <h3 class="font-serif text-3xl italic" id="closing-names"></h3>
+        <div class="relative z-[2] text-center text-white p-12">
+            <h2 class="font-script text-8xl mb-8">Terima Kasih</h2>
+            <p class="text-lg opacity-80 leading-relaxed mb-12 max-w-md mx-auto">Merupakan suatu kehormatan dan kebahagiaan bagi kami sekeluarga apabila Bapak/Ibu/Saudara/i berkenan hadir.</p>
+            <h3 class="font-serif text-4xl italic" id="closing-names"></h3>
         </div>
     </section>
 
     <nav class="bottom-nav">
-        <div onclick="toSec('intro')" class="cursor-pointer text-[#8e735b]"><i class="fas fa-heart"></i></div>
-        <div onclick="toSec('groom-sec')" class="cursor-pointer text-[#8e735b]"><i class="fas fa-user"></i></div>
-        <div onclick="toSec('event')" class="cursor-pointer text-[#8e735b]"><i class="fas fa-calendar-alt"></i></div>
-        <div onclick="toSec('gallery')" class="cursor-pointer text-[#8e735b]"><i class="fas fa-images"></i></div>
-        <div onclick="toSec('rsvp')" class="cursor-pointer text-[#8e735b]"><i class="fas fa-comment-dots"></i></div>
+        <div onclick="toSec('intro')" class="cursor-pointer text-[#8e735b] px-2"><i class="fas fa-heart"></i></div>
+        <div onclick="toSec('groom-sec')" class="cursor-pointer text-[#8e735b] px-2"><i class="fas fa-user"></i></div>
+        <div onclick="toSec('event')" class="cursor-pointer text-[#8e735b] px-2"><i class="fas fa-calendar-alt"></i></div>
+        <div onclick="toSec('gallery')" class="cursor-pointer text-[#8e735b] px-2"><i class="fas fa-images"></i></div>
+        <div onclick="toSec('rsvp')" class="cursor-pointer text-[#8e735b] px-2"><i class="fas fa-comment-dots"></i></div>
     </nav>
 
     <script>
+        /* 
+           =========================================
+           DASHBOARD KONFIGURASI (UBAH DI SINI)
+           =========================================
+        */
         const CONFIG = {
+            // 1. DATA NAMA & WHATSAPP
             names: {
                 groom: "Yogi Saputra, S.T.",
                 groomParents: "Putra dari Bp. Ahmad & Ibu Siti",
                 bride: "Ratna Sari, S.E.",
                 brideParents: "Putri dari Bp. Bambang & Ibu Retno",
                 display: "Yogi & Ratna",
-                wa: "628123456789"
+                wa: "628123456789" // Nomor WA Tujuan RSVP/Kado
             },
+
+            // 2. DATA FOTO
             photos: {
                 cover: "https://images.unsplash.com/photo-1511285560929-80b456fea0bc?w=1600",
                 intro: "https://images.unsplash.com/photo-1519741497674-611481863552?w=1200",
-                groom: "https://images.unsplash.com/photo-1583939003579-730e3918a45a?w=800",
+                groom: "https://images.unsplash.com/photo-1583939003579-730e3918a45a?w=800", 
                 bride: "https://images.unsplash.com/photo-1594463750939-ebb28c3f7f75?w=800",
                 closing: "https://images.unsplash.com/photo-1604017011836-739921773d3a?w=1600",
+                
+                // Galeri
                 gallery: [
                     "https://images.unsplash.com/photo-1519225421980-715cb0215aed?w=600",
                     "https://images.unsplash.com/photo-1583939003579-730e3918a45a?w=600",
@@ -235,6 +265,8 @@
                     "https://images.unsplash.com/photo-1515934751635-c81c6bc9a2d8?w=600"
                 ]
             },
+
+            // 3. BACKGROUND PER SECTION (URL GAMBAR/TEKSTUR)
             backgrounds: {
                 intro: "https://www.transparenttextures.com/patterns/natural-paper.png",
                 groomSec: "https://www.transparenttextures.com/patterns/cream-paper.png",
@@ -244,20 +276,39 @@
                 gift: "https://www.transparenttextures.com/patterns/silk.png",
                 rsvp: "https://www.transparenttextures.com/patterns/natural-paper.png"
             },
+
+            // 4. AUDIO (LINK MP3)
             music: "https://www.bensound.com/bensound-music/bensound-memories.mp3",
+
+            // 5. DETAIL ACARA & COUNTDOWN
             event: {
                 date: "Minggu, 20 Juli 2025",
                 akad: "08:00 - 10:00 WIB",
                 resepsi: "11:00 - Selesai",
                 loc: "Gedung Serbaguna Indah, Yogyakarta",
                 map: "https://maps.google.com",
-                target: "July 20, 2025 08:00:00"
+                target: "July 20, 2025 08:00:00" // FORMAT: "Month Day, Year Time"
             },
-            gift: { bank: "BCA", acc: "1234 5678 90", owner: "Yogi Saputra" },
+
+            // 6. HADIAH (GIFT)
+            gift: { 
+                bank: "BCA", 
+                acc: "1234 5678 90", 
+                owner: "Yogi Saputra" 
+            },
+
+            // 7. RSVP TARGET (PILIH: 'whatsapp' ATAU 'link')
+            rsvp: {
+                type: 'whatsapp', // Ganti ke 'link' jika ingin menggunakan Google Sheets/Form
+                externalLink: 'https://docs.google.com/forms/d/your-form-id/viewform' // Masukkan link jika type adalah 'link'
+            },
+
+            // 8. QUOTE
             quote: `"Dan di antara tanda-tanda kekuasaan-Nya ialah Dia menciptakan untukmu isteri-isteri dari jenismu sendiri, supaya kamu cenderung dan merasa tenteram kepadanya." (Ar-Rum: 21)`
         };
 
         function init() {
+            // Set Text
             document.getElementById('c-display-names').innerText = CONFIG.names.display;
             document.getElementById('closing-names').innerText = CONFIG.names.display;
             document.getElementById('groom-name').innerText = CONFIG.names.groom;
@@ -273,6 +324,8 @@
             document.getElementById('bank-name').innerText = CONFIG.gift.bank;
             document.getElementById('bank-acc').innerText = CONFIG.gift.acc;
             document.getElementById('bank-owner').innerText = `a/n ${CONFIG.gift.owner}`;
+            
+            // Set Assets
             document.getElementById('musicSource').src = CONFIG.music;
             document.getElementById('bgMusic').load();
             document.getElementById('cover').style.backgroundImage = `url('${CONFIG.photos.cover}')`;
@@ -281,20 +334,25 @@
             document.getElementById('bride-photo').src = CONFIG.photos.bride;
             document.getElementById('closing').style.backgroundImage = `url('${CONFIG.photos.closing}')`;
 
+            // Build Gallery
             const gCont = document.getElementById('gallery-container');
             CONFIG.photos.gallery.forEach(img => {
                 const div = document.createElement('div');
-                div.className = "overflow-hidden rounded-xl h-40 shadow-md";
+                div.className = "overflow-hidden rounded-3xl h-48 shadow-xl hover:scale-105 transition-transform cursor-pointer";
                 div.innerHTML = `<img src="${img}" class="w-full h-full object-cover">`;
                 gCont.appendChild(div);
             });
 
+            // Set Backgrounds dynamically
             ['intro', 'groom-sec', 'bride-sec', 'event', 'gallery', 'gift', 'rsvp'].forEach(s => {
                 const el = document.getElementById(s);
                 const bgKey = s.replace(/-([a-z])/g, (g) => g[1].toUpperCase());
-                if(el && CONFIG.backgrounds[bgKey]) el.style.backgroundImage = `url('${CONFIG.backgrounds[bgKey]}')`;
+                if(el && CONFIG.backgrounds[bgKey]) {
+                    el.style.backgroundImage = `url('${CONFIG.backgrounds[bgKey]}')`;
+                }
             });
 
+            // URL Params for personalization
             const to = new URLSearchParams(window.location.search).get('to');
             if(to) document.getElementById('guest-name').innerText = to;
 
@@ -305,20 +363,33 @@
             document.getElementById('cover').classList.add('hide');
             document.getElementById('music-btn').classList.remove('hidden');
             const audio = document.getElementById('bgMusic');
-            audio.play().catch(e => console.log("Audio play blocked"));
+            audio.play().catch(e => console.log("Audio play blocked by browser policy. Interaction required."));
             document.querySelector('#music-btn i').classList.add('spinning');
             document.body.style.overflow = "auto";
         }
 
         function startCountdown() {
             const target = new Date(CONFIG.event.target).getTime();
-            setInterval(() => {
+            
+            const timer = setInterval(() => {
                 const now = new Date().getTime();
                 const diff = target - now;
-                if(diff < 0) return;
-                document.getElementById('days').innerText = Math.floor(diff / (1000 * 60 * 60 * 24));
-                document.getElementById('hours').innerText = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-                document.getElementById('mins').innerText = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+
+                if(diff < 0) {
+                    clearInterval(timer);
+                    document.getElementById('countdown').innerHTML = "<p class='text-[#8e735b] font-bold text-2xl'>Acara Sedang Berlangsung!</p>";
+                    return;
+                }
+
+                const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+                const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                const mins = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+                const secs = Math.floor((diff % (1000 * 60)) / 1000);
+
+                document.getElementById('days').innerText = days;
+                document.getElementById('hours').innerText = hours;
+                document.getElementById('mins').innerText = mins;
+                document.getElementById('secs').innerText = secs;
             }, 1000);
         }
 
@@ -329,33 +400,62 @@
             temp.select();
             document.execCommand('copy');
             document.body.removeChild(temp);
-            Swal.fire({ title: 'Tersalin!', text: 'Nomor rekening telah disalin.', icon: 'success', confirmButtonColor: '#8e735b' });
+            Swal.fire({ 
+                title: 'Tersalin!', 
+                text: 'Nomor rekening telah disalin ke clipboard.', 
+                icon: 'success', 
+                confirmButtonColor: '#8e735b',
+                background: '#fff'
+            });
         }
 
         function confirmGift() {
-            window.open(`https://wa.me/${CONFIG.names.wa}?text=Halo ${CONFIG.names.display}, saya ingin mengonfirmasi tanda kasih.`);
+            const msg = `Halo ${CONFIG.names.display}, saya ingin mengonfirmasi pengiriman tanda kasih untuk pernikahan kalian.`;
+            window.open(`https://wa.me/${CONFIG.names.wa}?text=${encodeURIComponent(msg)}`);
         }
 
-        function sendRSVP() {
+        function submitRSVP() {
             const name = document.getElementById('rsvp-name').value;
             const status = document.getElementById('rsvp-status').value;
             const msg = document.getElementById('rsvp-msg').value;
-            const fullMsg = `Halo ${CONFIG.names.display}, saya ${name}. Status: ${status}. Pesan: ${msg}`;
-            window.open(`https://wa.me/${CONFIG.names.wa}?text=${encodeURIComponent(fullMsg)}`);
+
+            if (CONFIG.rsvp.type === 'whatsapp') {
+                const fullMsg = `Halo ${CONFIG.names.display}, saya ${name}.\n\nKonfirmasi: ${status}\nUcapan: ${msg}`;
+                window.open(`https://wa.me/${CONFIG.names.wa}?text=${encodeURIComponent(fullMsg)}`);
+            } else {
+                // Open external link (Google Form/Sheet URL)
+                window.open(CONFIG.rsvp.externalLink);
+                Swal.fire({
+                    title: 'Membuka Form...',
+                    text: 'Anda akan diarahkan ke halaman konfirmasi.',
+                    icon: 'info',
+                    confirmButtonColor: '#8e735b'
+                });
+            }
         }
 
-        function toSec(id) { document.getElementById(id).scrollIntoView({ behavior: 'smooth' }); }
+        function toSec(id) { 
+            document.getElementById(id).scrollIntoView({ behavior: 'smooth' }); 
+        }
+
         let isPlaying = true;
         function toggleMusic() {
             const audio = document.getElementById('bgMusic');
             const icon = document.querySelector('#music-btn i');
-            if(isPlaying) { audio.pause(); icon.classList.remove('spinning'); }
-            else { audio.play(); icon.classList.add('spinning'); }
+            if(isPlaying) { 
+                audio.pause(); 
+                icon.classList.remove('spinning'); 
+                icon.className = "fas fa-play text-2xl";
+            } else { 
+                audio.play(); 
+                icon.classList.add('spinning'); 
+                icon.className = "fas fa-compact-disc text-2xl";
+            }
             isPlaying = !isPlaying;
         }
 
         window.onload = init;
-        document.body.style.overflow = "hidden";
+        document.body.style.overflow = "hidden"; // Lock scroll initially
     </script>
 </body>
 </html>
