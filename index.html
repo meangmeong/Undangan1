@@ -394,15 +394,34 @@
             });
 
             // Timer
-            const target = new Date(CONFIG.event.targetCountdown).getTime();
-            setInterval(() => {
-                const diff = target - new Date().getTime();
-                if (diff > 0) {
-                    document.getElementById('days').innerText = String(Math.floor(diff / 86400000)).padStart(2,'0');
-                    document.getElementById('hours').innerText = String(Math.floor((diff % 86400000) / 3600000)).padStart(2,'0');
-                    document.getElementById('mins').innerText = String(Math.floor((diff % 3600000) / 60000)).padStart(2,'0');
-                }
-            }, 1000);
+            function updateTimer() {
+    const target = new Date(CONFIG.event.targetCountdown).getTime();
+    const now = new Date().getTime();
+    const diff = target - now;
+
+    if (diff > 0) {
+        const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+        const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        const mins = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+        const secs = Math.floor((diff % (1000 * 60)) / 1000);
+
+        // Update tampilan angka
+        document.getElementById('days').innerText = String(days).padStart(2, '0');
+        document.getElementById('hours').innerText = String(hours).padStart(2, '0');
+        document.getElementById('mins').innerText = String(mins).padStart(2, '0');
+        document.getElementById('secs').innerText = String(secs).padStart(2, '0');
+    } else {
+        // Tampilan jika waktu sudah habis
+        const timerContainer = document.getElementById('countdown');
+        if (timerContainer) {
+            timerContainer.innerHTML = "<p class='text-white font-bold tracking-widest text-sm'>ACARA SEDANG BERLANGSUNG</p>";
+        }
+    }
+}
+
+// Pastikan pemanggilan interval tetap ada di bawahnya
+updateTimer();
+setInterval(updateTimer, 1000);
 
             // Guest Name
             const to = new URLSearchParams(window.location.search).get('to');
