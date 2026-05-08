@@ -393,36 +393,42 @@
                 grid.appendChild(img);
             });
 
-            // Timer
-            function updateTimer() {
-    const target = new Date(CONFIG.event.targetCountdown).getTime();
-    const now = new Date().getTime();
-    const diff = target - now;
+            // Countdown Timer Logic
+        function updateTimer() {
+            const targetDate = CONFIG.event.countdownDate;
+            const target = new Date(targetDate).getTime();
+            const now = new Date().getTime();
+            const diff = target - now;
 
-    if (diff > 0) {
-        const days = Math.floor(diff / (1000 * 60 * 60 * 24));
-        const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-        const mins = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
-        const secs = Math.floor((diff % (1000 * 60)) / 1000);
+            // Pastikan elemen ada sebelum diupdate
+            const dEl = document.getElementById('d');
+            const hEl = document.getElementById('h');
+            const mEl = document.getElementById('m');
+            const sEl = document.getElementById('s');
 
-        // Update tampilan angka
-        document.getElementById('days').innerText = String(days).padStart(2, '0');
-        document.getElementById('hours').innerText = String(hours).padStart(2, '0');
-        document.getElementById('mins').innerText = String(mins).padStart(2, '0');
-        document.getElementById('secs').innerText = String(secs).padStart(2, '0');
-    } else {
-        // Tampilan jika waktu sudah habis
-        const timerContainer = document.getElementById('countdown');
-        if (timerContainer) {
-            timerContainer.innerHTML = "<p class='text-white font-bold tracking-widest text-sm'>ACARA SEDANG BERLANGSUNG</p>";
+            if (diff > 0) {
+                const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+                const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                const mins = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+                const secs = Math.floor((diff % (1000 * 60)) / 1000);
+
+                // Update teks dengan format 2 digit (01, 02, dst)
+                if(dEl) dEl.innerText = String(days).padStart(2, '0');
+                if(hEl) hEl.innerText = String(hours).padStart(2, '0');
+                if(mEl) mEl.innerText = String(mins).padStart(2, '0');
+                if(sEl) sEl.innerText = String(secs).padStart(2, '0');
+            } else {
+                const container = document.getElementById('countdown-container');
+                if (container) {
+                    container.innerHTML = "<p style='font-weight:bold; color:var(--primary); font-size: 1.2rem; margin: 20px 0;'>ACARA SEDANG BERLANGSUNG</p>";
+                }
+            }
         }
-    }
-}
 
-// Pastikan pemanggilan interval tetap ada di bawahnya
-updateTimer();
-setInterval(updateTimer, 1000);
-
+        // Jalankan timer setiap 1 detik
+        setInterval(updateTimer, 1000);
+        // Panggil langsung agar angka tidak muncul 00 saat pertama kali buka
+        updateTimer();
             // Guest Name
             const to = new URLSearchParams(window.location.search).get('to');
             if(to) document.getElementById('guest-name').innerText = to;
